@@ -4,10 +4,13 @@ XMLTest
 A small project for exploring XML parsing speed (and memory efficiency),
 specifically dealing with Tradeshift UBL documents.
 
+Serves as a testbed outside of the main application repository, and doesn't
+necessarily contain production-ready or idiomatic Kotlin code.
+
 Performance baseline
 ====================
 The "old version" baselines required manual work – uncommenting the wanted StAX
-implementation in the Gradle build file, uncommeting the wanted processing
+implementation in the Gradle build file, uncommenting the wanted processing
 (path-segment or StaxMate) version, and running. It had a lot of jitter, but
 lowest numbers picked from a bunch of runs were:
 

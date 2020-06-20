@@ -1,19 +1,14 @@
-package dk.snemarch.xmltest;
+package dk.snemarch.xmltest
 
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import java.io.InputStream;
+import java.io.InputStream
+import javax.xml.stream.XMLInputFactory
+import javax.xml.stream.XMLStreamException
 
-public class ApplicationResponseExtractor extends DataExtractorBase implements DataExtractor<ExtraDataApplicationResponse> {
-	public ApplicationResponseExtractor(XMLInputFactory factory) {
-		super(factory);
-	}
-
-	public ExtraDataApplicationResponse extract(InputStream document) throws XMLStreamException {
-		ApplicationResponseContentHandler handler = new ApplicationResponseContentHandler();
-		super.extractAndSave(document, handler);
-
-		ExtraDataApplicationResponse data = handler.getData();
-		return data;
+class ApplicationResponseExtractor(factory: XMLInputFactory) : DataExtractorBase(factory), DataExtractor<ExtraDataApplicationResponse> {
+	@Throws(XMLStreamException::class)
+	override fun extract(document: InputStream): ExtraDataApplicationResponse {
+		val handler = ApplicationResponseContentHandler()
+		super.extractAndSave(document, handler)
+		return handler.data!!
 	}
 }

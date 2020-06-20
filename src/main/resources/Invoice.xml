@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+		 xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+		 xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+	<cbc:CustomizationID>urn:tradeshift.com:ubl-2.0-customizations:2010-06</cbc:CustomizationID>
+	<cbc:ProfileID schemeID="CWA 16073:2010" schemeAgencyID="CEN/ISSS WS/BII">urn:www.cenbii.eu:profile:bii04:ver1.0
+	</cbc:ProfileID>
+	<cbc:ID>05860835</cbc:ID>
+	<cbc:CopyIndicator>true</cbc:CopyIndicator>
+	<cbc:IssueDate>2017-09-14</cbc:IssueDate>
+	<cbc:InvoiceTypeCode listID="UN/ECE 1001 Subset" listAgencyID="6">380</cbc:InvoiceTypeCode>
+	<cbc:DocumentCurrencyCode>CNY</cbc:DocumentCurrencyCode>
+	<cac:AdditionalDocumentReference>
+		<cbc:ID/>
+		<cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">BOL ID</cbc:DocumentTypeCode>
+	</cac:AdditionalDocumentReference>
+	<cac:AdditionalDocumentReference>
+		<cbc:ID>INV1234</cbc:ID>
+		<cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">File ID</cbc:DocumentTypeCode>
+	</cac:AdditionalDocumentReference>
+	<cac:AdditionalDocumentReference>
+		<cbc:ID>true</cbc:ID>
+		<cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">HideLines</cbc:DocumentTypeCode>
+	</cac:AdditionalDocumentReference>
+	<cac:AccountingSupplierParty>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID schemeID="TS:VAT">N/A</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:PartyName>
+				<cbc:Name>奥（天普拉津）塑公司品料制有限</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+				<cbc:AddressFormatCode listID="UN/ECE 3477" listAgencyID="6">5</cbc:AddressFormatCode>
+				<cbc:StreetName>TianJing 300010</cbc:StreetName>
+				<cbc:CityName>TianJing</cbc:CityName>
+				<cbc:PostalZone>300010</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>AD</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+			<cac:PartyTaxScheme>
+				<cbc:CompanyID schemeID="TS:VAT">N/A</cbc:CompanyID>
+				<cac:TaxScheme>
+					<cbc:Name>VAT</cbc:Name>
+				</cac:TaxScheme>
+			</cac:PartyTaxScheme>
+		</cac:Party>
+	</cac:AccountingSupplierParty>
+	<cac:AccountingCustomerParty>
+		<cac:Party>
+			<cac:PartyIdentification>
+				<cbc:ID schemeID="TS:GLI">com.babalever.id:cn</cbc:ID>
+			</cac:PartyIdentification>
+			<cac:PartyName>
+				<cbc:Name>Babalever (Tianjin) Co, Ltd.</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+				<cbc:AddressFormatCode listID="UN/ECE 3477" listAgencyID="6">5</cbc:AddressFormatCode>
+				<cbc:StreetName>500 Janghy Road, Airport Economic Zone, Janghy, China</cbc:StreetName>
+				<cbc:CityName>Janghy</cbc:CityName>
+				<cbc:PostalZone>500500</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>CN</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+			<cac:PartyTaxScheme>
+				<cbc:CompanyID schemeID="CN:VAT">12424265751424296</cbc:CompanyID>
+				<cac:TaxScheme>
+					<cbc:Name>VAT</cbc:Name>
+				</cac:TaxScheme>
+			</cac:PartyTaxScheme>
+		</cac:Party>
+	</cac:AccountingCustomerParty>
+	<cac:PaymentMeans>
+		<cbc:PaymentMeansCode listID="urn:tradeshift.com:api:1.0:paymentmeanscode">1</cbc:PaymentMeansCode>
+		<cbc:PaymentDueDate>2018-01-12</cbc:PaymentDueDate>
+	</cac:PaymentMeans>
+	<cac:TaxTotal>
+		<cbc:TaxAmount currencyID="CNY">0</cbc:TaxAmount>
+		<cac:TaxSubtotal>
+			<cbc:TaxableAmount currencyID="CNY">103642.2500</cbc:TaxableAmount>
+			<cbc:TaxAmount currencyID="CNY">0</cbc:TaxAmount>
+			<cac:TaxCategory>
+				<cbc:ID schemeID="UN/ECE 5305" schemeAgencyID="6">S</cbc:ID>
+				<cbc:Percent>0</cbc:Percent>
+				<cac:TaxScheme>
+					<cbc:ID schemeID="UN/ECE 5153 Subset" schemeAgencyID="6">VAT</cbc:ID>
+					<cbc:Name>VAT</cbc:Name>
+				</cac:TaxScheme>
+			</cac:TaxCategory>
+		</cac:TaxSubtotal>
+	</cac:TaxTotal>
+	<cac:LegalMonetaryTotal>
+		<cbc:LineExtensionAmount currencyID="CNY">103642.2500</cbc:LineExtensionAmount>
+		<cbc:TaxExclusiveAmount currencyID="CNY">0</cbc:TaxExclusiveAmount>
+		<cbc:TaxInclusiveAmount currencyID="CNY">103642.2500</cbc:TaxInclusiveAmount>
+		<cbc:PayableAmount currencyID="CNY">103642.2500</cbc:PayableAmount>
+	</cac:LegalMonetaryTotal>
+	<cac:InvoiceLine>
+		<cbc:ID>1</cbc:ID>
+		<cbc:InvoicedQuantity unitCode="EA">1</cbc:InvoicedQuantity>
+		<cbc:LineExtensionAmount currencyID="CNY">103642.2500</cbc:LineExtensionAmount>
+		<cbc:AccountingCost/>
+		<cac:OrderLineReference>
+			<cbc:LineID/>
+		</cac:OrderLineReference>
+		<cac:TaxTotal>
+			<cbc:TaxAmount currencyID="CNY">0</cbc:TaxAmount>
+			<cac:TaxSubtotal>
+				<cbc:TaxableAmount currencyID="CNY">103642.2500</cbc:TaxableAmount>
+				<cbc:TaxAmount currencyID="CNY">0</cbc:TaxAmount>
+				<cac:TaxCategory>
+					<cbc:ID schemeID="UN/ECE 5305" schemeAgencyID="6">S</cbc:ID>
+					<cbc:Percent>0</cbc:Percent>
+					<cac:TaxScheme>
+						<cbc:ID schemeID="UN/ECE 5153 Subset" schemeAgencyID="6">VAT</cbc:ID>
+					</cac:TaxScheme>
+				</cac:TaxCategory>
+			</cac:TaxSubtotal>
+		</cac:TaxTotal>
+		<cac:Item>
+			<cbc:Description>Buyer Sourced Data Invoice</cbc:Description>
+			<cac:SellersItemIdentification>
+				<cbc:ID/>
+			</cac:SellersItemIdentification>
+		</cac:Item>
+		<cac:Price>
+			<cbc:PriceAmount currencyID="CNY">103642.2500</cbc:PriceAmount>
+		</cac:Price>
+	</cac:InvoiceLine>
+</Invoice>

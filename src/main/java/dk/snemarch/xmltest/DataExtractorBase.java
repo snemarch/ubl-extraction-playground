@@ -13,16 +13,10 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 public class DataExtractorBase {
-	private static final XMLInputFactory factory = initializeFactory();
+	private final XMLInputFactory factory;
 
-	private static XMLInputFactory initializeFactory() {
-		XMLInputFactory factory = XMLInputFactory.newInstance();
-		factory.setProperty(XMLInputFactory.IS_COALESCING, true);
-		factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
-
-		System.out.println("XMLInputFactory is " + factory.getClass().getCanonicalName());
-
-		return factory;
+	public DataExtractorBase(XMLInputFactory factory) {
+		this.factory = factory;
 	}
 
 	protected void extractAndSave(InputStream document, BaseContentHandler handler) throws XMLStreamException {

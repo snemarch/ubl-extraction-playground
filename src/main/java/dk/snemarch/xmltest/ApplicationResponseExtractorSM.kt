@@ -7,7 +7,6 @@ import org.codehaus.staxmate.`in`.SMInputCursor
 import java.io.InputStream
 import java.time.LocalDate
 import java.util.*
-import javax.xml.stream.XMLInputFactory
 import javax.xml.stream.XMLStreamConstants.END_ELEMENT
 import javax.xml.stream.XMLStreamConstants.START_ELEMENT
 
@@ -21,18 +20,9 @@ ApplicationResponse			[1..1]
 			ResponseCode	[0..1]
 			Description		[0..*]
  */
-class ApplicationResponseExtractorSM {
+class ApplicationResponseExtractorSM(private val factory: SMInputFactory): DataExtractor<ExtraDataApplicationResponse> {
 	companion object {
-		private val FACTORY = SMInputFactory(initializeFactory())
 		private val responseFilter = NamedElementFilter("Response")
-
-		private fun initializeFactory(): XMLInputFactory {
-			val factory = XMLInputFactory.newInstance()
-			factory.setProperty(XMLInputFactory.IS_COALESCING, true)
-			factory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
-			println("XMLInputFactory is " + factory.javaClass.canonicalName)
-			return factory
-		}
 	}
 
 	var numDocumentResponses: Int = 0
@@ -40,8 +30,8 @@ class ApplicationResponseExtractorSM {
 	private var responseCode: String? = null
 	private var issueDate: LocalDate? = null
 
-	fun extract(document: InputStream): ExtraDataApplicationResponse {
-		val root = FACTORY.rootElementCursor(document).advance()
+	override fun extract(document: InputStream): ExtraDataApplicationResponse {
+		val root = factory.rootElementCursor(document).advance()
 		try {
 			val child = root.childElementCursor()
 			while(child.next != null) {

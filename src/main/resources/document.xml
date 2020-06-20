@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApplicationResponse xmlns="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+					 xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+					 xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+	<cbc:CustomizationID>urn:tradeshift.com:ubl-2.0-customizations:2010-06</cbc:CustomizationID>
+	<cbc:ProfileID schemeID="CWA 16073:2010" schemeAgencyID="CEN/ISSS WS/BII" schemeVersionID="1">urn:www.cenbii.eu:profile:bii04:ver1.0</cbc:ProfileID>
+	<cbc:ID>BABA1054-I20003_20200228_OB05624564AR67563461-0d7d-4c17-98fb-d4cc9fd4dd8d</cbc:ID>
+	<cbc:IssueDate>2020-05-28</cbc:IssueDate>
+	<cac:SenderParty>
+		<cac:PartyIdentification>
+			<cbc:ID schemeID="TS:GLI">net.example.id:nl</cbc:ID>
+		</cac:PartyIdentification>
+		<cac:PartyName>
+			<cbc:Name>Babalever Innovation Centre Gröningen Z.K.</cbc:Name>
+		</cac:PartyName>
+	</cac:SenderParty>
+	<cac:ReceiverParty>
+		<cac:PartyIdentification>
+			<cbc:ID schemeID="TS:ConnectionProperty">AccountingSystemId:BABAFRIEND</cbc:ID>
+		</cac:PartyIdentification>
+		<cac:PartyName>
+			<cbc:Name>MI6 MANCHEGO</cbc:Name>
+		</cac:PartyName>
+	</cac:ReceiverParty>
+	<cac:DocumentResponse>
+		<cac:Response>
+			<cbc:ReferenceID>1</cbc:ReferenceID>
+			<cbc:ResponseCode>BusinessPaid</cbc:ResponseCode>
+			<cbc:Description>28 May 2020 - Votre facture a été payée 28 May 2020 -  - .</cbc:Description>
+		</cac:Response>
+		<cac:DocumentReference>
+			<cbc:ID>BABA1054-I20003</cbc:ID>
+			<cbc:IssueDate>2020-02-28</cbc:IssueDate>
+			<cbc:DocumentTypeCode listID="urn:tradeshift.com:api:1.0:documenttypecode">Invoice</cbc:DocumentTypeCode>
+		</cac:DocumentReference>
+	</cac:DocumentResponse>
+</ApplicationResponse>

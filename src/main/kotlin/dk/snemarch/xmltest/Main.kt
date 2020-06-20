@@ -3,11 +3,16 @@ package dk.snemarch.xmltest
 import org.codehaus.staxmate.SMInputFactory
 import javax.xml.stream.XMLInputFactory
 
-private const val OUTERLOOPS = 10
-private const val INNERLOOPS = 100_000
+private var OUTERLOOPS = 10
+private var INNERLOOPS = 100_000
 
 fun main(args: Array<String>) {
-	//TODO: specify number of suites and iterations on the commandline?
+	if (args.size == 2) {
+		OUTERLOOPS = args[0].toInt()
+		INNERLOOPS = args[1].toInt()
+	} else {
+		System.out.println("OUTERLOOPS and INNERLOOPS not specified, using defaults")
+	}
 
 	//TODO: Should probably move to a proper benchmarking framework, perhaps JMH? It would be nice to have
 	// one set of min/max/median timings.
@@ -24,7 +29,7 @@ fun main(args: Array<String>) {
 	readerInfo(woodstoxFactory)
 	readerInfo(aaltoFactory)
 
-	for (i in 1 .. OUTERLOOPS) {
+	for (i in 1..OUTERLOOPS) {
 		println("Suite $i of $OUTERLOOPS: running $INNERLOOPS of each")
 		benchmark("AR JRE/default", applicationResponse) { ApplicationResponseExtractor(jreFactory) }
 		benchmark("AR Woodstox/default", applicationResponse) { ApplicationResponseExtractor(woodstoxFactory) }
@@ -44,7 +49,7 @@ private fun readerInfo(factory: XMLInputFactory) {
 	println("${factory.javaClass.canonicalName} produces ${factory.createXMLStreamReader(ByteArray(0).inputStream()).javaClass.canonicalName}")
 }
 
-private fun <T> benchmark(name:String, document:ByteArray, handlerSupplier: () -> DataExtractor<T>) {
+private fun <T> benchmark(name: String, document: ByteArray, handlerSupplier: () -> DataExtractor<T>) {
 	print("\t $name: ")
 	val startTime = System.nanoTime()
 	for (i in 0 until INNERLOOPS) {

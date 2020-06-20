@@ -5,5 +5,5 @@ import javax.xml.stream.XMLStreamException
 
 interface DataExtractor<T> {
 	@Throws(XMLStreamException::class)
-	fun extract(input: InputStream): T
+	fun extract(document: InputStream): T
 }

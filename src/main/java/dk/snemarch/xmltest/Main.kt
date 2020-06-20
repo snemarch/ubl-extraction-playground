@@ -2,8 +2,6 @@ package dk.snemarch.xmltest
 
 import org.codehaus.staxmate.SMInputFactory
 import javax.xml.stream.XMLInputFactory
-import com.ctc.wstx.stax.WstxInputFactory as WoodstoxImportFactory
-import com.fasterxml.aalto.stax.InputFactoryImpl as AaltoInputFactory
 
 private const val OUTERLOOPS = 10
 private const val INNERLOOPS = 100_000
@@ -13,12 +11,12 @@ fun main(args: Array<String>) {
 
 	//TODO: Should probably move to a proper benchmarking framework, perhaps JMH? It would be nice to have
 	// one set of min/max/median timings.
-	val applicationResponse = loadResource("ApplicationResponse.xml")
-	val invoice = loadResource("Invoice.xml")
+	val applicationResponse = Utilities.loadResource("ApplicationResponse.xml")
+	val invoice = Utilities.loadResource("Invoice.xml")
 
 	val jreFactory = XMLInputFactory.newDefaultFactory()
-	val woodstoxFactory = woodstoxFactory()
-	val aaltoFactory = aaltoFactory()
+	val woodstoxFactory = Utilities.woodstoxFactory()
+	val aaltoFactory = Utilities.aaltoFactory()
 	val woodstoxSMFactory = SMInputFactory(woodstoxFactory)
 	val aaltoSMFactory = SMInputFactory(aaltoFactory)
 
@@ -37,19 +35,9 @@ fun main(args: Array<String>) {
 		benchmark("INV JRE/default", invoice) { InvoiceExtractor(jreFactory) }
 		benchmark("INV Woodstox/default", invoice) { InvoiceExtractor(woodstoxFactory) }
 		benchmark("INV Aalto/default", invoice) { InvoiceExtractor(aaltoFactory) }
+		benchmark("INV Woodstox/StaxMate", invoice) { InvoiceExtractorSM(woodstoxSMFactory) }
+		benchmark("INV Aalto/StaxMate", invoice) { InvoiceExtractorSM(aaltoSMFactory) }
 	}
-}
-
-private fun woodstoxFactory(): XMLInputFactory = WoodstoxImportFactory.newFactory().apply {
-	setProperty(XMLInputFactory.IS_COALESCING, true)
-	setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
-}
-
-private fun aaltoFactory(): XMLInputFactory = AaltoInputFactory().apply {
-	//NOTE: calling AaltoInputFactory.newFactory creates a Woodstox factory if Woodstox is on the classpath,
-	//we need a direct constructor invocation to get the Aalto factory!
-	setProperty(XMLInputFactory.IS_COALESCING, true)
-	setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
 }
 
 private fun readerInfo(factory: XMLInputFactory) {
@@ -66,5 +54,3 @@ private fun <T> benchmark(name:String, document:ByteArray, handlerSupplier: () -
 	val endTime = System.nanoTime()
 	println("execution took ${(endTime - startTime) / 1_000_000}ms")
 }
-
-public fun loadResource(name: String) = {}::class.java.classLoader.getResourceAsStream(name).readAllBytes()

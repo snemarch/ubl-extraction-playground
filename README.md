@@ -33,3 +33,18 @@ Suite 10 of 10: running 100000 of each
 * Aalto/default: execution took 1474ms
 * Woodstox/StaxMate: execution took 1257ms
 * Aalto/StaxMate: execution took 814ms
+
+After converting all the remaining Java to Kotlin and adding Invoice handling,
+the baseline ends up at:
+
+Suite 10 of 10: running 100000 of each
+* AR JRE/default: execution took 4685ms
+* AR Woodstox/default: execution took 1824ms
+* AR Aalto/default: execution took 1380ms
+* AR Woodstox/StaxMate: execution took 1156ms
+* AR Aalto/StaxMate: execution took 761ms
+* INV JRE/default: execution took 13629ms
+* INV Woodstox/default: execution took 6757ms
+* INV Aalto/default: execution took 5102ms
+* INV Woodstox/StaxMate: execution took 3636ms
+* INV Aalto/StaxMate: execution took 2262ms

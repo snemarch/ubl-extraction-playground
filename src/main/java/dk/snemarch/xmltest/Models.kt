@@ -1,4 +1,4 @@
-package dk.snemarch.xmltest;
+package dk.snemarch.xmltest
 
 import java.math.BigDecimal
 import java.time.LocalDate

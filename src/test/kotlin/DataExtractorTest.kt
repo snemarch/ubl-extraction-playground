@@ -1,5 +1,3 @@
-import com.ctc.wstx.stax.WstxInputFactory
-import com.fasterxml.aalto.stax.InputFactoryImpl
 import dk.snemarch.xmltest.*
 import io.kotest.core.spec.style.ExpectSpec
 import io.kotest.matchers.shouldBe
@@ -10,13 +8,13 @@ import javax.xml.stream.XMLInputFactory
 
 class DataExtractorTest: ExpectSpec({
 	val jreFactory = XMLInputFactory.newDefaultFactory()
-	val woodstoxFactory = woodstoxFactory()
-	val aaltoFactory = aaltoFactory()
+	val woodstoxFactory = Utilities.woodstoxFactory()
+	val aaltoFactory = Utilities.aaltoFactory()
 	val woodstoxSMFactory = SMInputFactory(woodstoxFactory)
 	val aaltoSMFactory = SMInputFactory(aaltoFactory)
 
-	val applicationResponse = loadResource("ApplicationResponse.xml")
-	val invoice = loadResource("Invoice.xml")
+	val applicationResponse = Utilities.loadResource("ApplicationResponse.xml")
+	val invoice = Utilities.loadResource("Invoice.xml")
 
 	val goodApplicationResponse = ExtraDataApplicationResponse(
 		issueDate = LocalDate.parse("2020-05-28"),
@@ -100,26 +98,15 @@ class DataExtractorTest: ExpectSpec({
 			data shouldBe goodInvoice
 		}
 
-//		expect("Woodstox/StaxMate works correctly") {
-//			val data = InvoiceExtractorSM(woodstoxSMFactory).extract(document.inputStream())
-//			data shouldBe goodInvoice
-//		}
-//
-//		expect("Aalto/StaxMate works correctly") {
-//			val data = InvoiceResponseExtractorSM(aaltoSMFactory).extract(document.inputStream())
-//			data shouldBe goodInvoice
-//		}
+		expect("Woodstox/StaxMate works correctly") {
+			val data = InvoiceExtractorSM(woodstoxSMFactory).extract(invoice.inputStream())
+			data shouldBe goodInvoice
+		}
+
+		expect("Aalto/StaxMate works correctly") {
+			val data = InvoiceExtractorSM(aaltoSMFactory).extract(invoice.inputStream())
+			data shouldBe goodInvoice
+		}
 	}
 })
 
-private fun woodstoxFactory(): XMLInputFactory = WstxInputFactory.newFactory().apply {
-	setProperty(XMLInputFactory.IS_COALESCING, true)
-	setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
-}
-
-private fun aaltoFactory(): XMLInputFactory = InputFactoryImpl().apply {
-	//NOTE: calling AaltoInputFactory.newFactory creates a Woodstox factory if Woodstox is on the classpath,
-	//we need a direct constructor invocation to get the Aalto factory!
-	setProperty(XMLInputFactory.IS_COALESCING, true)
-	setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false)
-}

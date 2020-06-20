@@ -6,7 +6,6 @@ import org.codehaus.staxmate.`in`.SMFilter
 import org.codehaus.staxmate.`in`.SMInputCursor
 import java.io.InputStream
 import java.time.LocalDate
-import java.util.*
 import javax.xml.stream.XMLStreamConstants.END_ELEMENT
 import javax.xml.stream.XMLStreamConstants.START_ELEMENT
 
@@ -30,8 +29,8 @@ class ApplicationResponseExtractorSM(private val factory: SMInputFactory): DataE
 	private var responseCode: String? = null
 	private var issueDate: LocalDate? = null
 
-	override fun extract(document: InputStream): ExtraDataApplicationResponse {
-		val root = factory.rootElementCursor(document).advance()
+	override fun extract(input: InputStream): ExtraDataApplicationResponse {
+		val root = factory.rootElementCursor(input).advance()
 		try {
 			val child = root.childElementCursor()
 			while(child.next != null) {
@@ -51,7 +50,7 @@ class ApplicationResponseExtractorSM(private val factory: SMInputFactory): DataE
 			System.err.println("Document had $numDocumentResponses DocumentResponses, expected only 1")
 		}
 
-		return ExtraDataApplicationResponse(UUID.randomUUID(), issueDate!!, responseCode!!, description!!)
+		return ExtraDataApplicationResponse(issueDate!!, responseCode!!, description!!)
 	}
 
 	private fun handleResponses(response: SMInputCursor) {

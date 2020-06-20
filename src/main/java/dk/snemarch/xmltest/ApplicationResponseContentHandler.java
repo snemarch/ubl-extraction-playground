@@ -1,7 +1,6 @@
 package dk.snemarch.xmltest;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class ApplicationResponseContentHandler implements BaseContentHandler {
 	private int numberOfDocumentResponses = 0;
@@ -43,7 +42,7 @@ public class ApplicationResponseContentHandler implements BaseContentHandler {
 
 	@Override
 	public void processEndDocument() {
-		data = new ExtraDataApplicationResponse(UUID.randomUUID(), issueDate, responseCode, description);
+		data = new ExtraDataApplicationResponse(issueDate, responseCode, description);
 
         if(numberOfDocumentResponses > 1) {
 //            System.err.println("Document had " + numberOfDocumentResponses + " DocumentResponses, expected only 1");

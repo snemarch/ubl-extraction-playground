@@ -9,8 +9,6 @@ private const val OUTERLOOPS = 10
 private const val INNERLOOPS = 100_000
 
 fun main(args: Array<String>) {
-	//TODO: write tests that ensure the extractors actually work :-)
-
 	//TODO: add invoice processing, it's a more complex document and should punish the simplistic path-segment based
 	// extractor, most likely showing larger performance gains for StaxMate extraction.
 
@@ -67,4 +65,4 @@ private fun <T> benchmark(name:String, document:ByteArray, handlerSupplier: () -
 	println("execution took ${(endTime - startTime) / 1_000_000}ms")
 }
 
-fun loadResource(name: String) = {}::class.java.classLoader.getResourceAsStream(name).readAllBytes()
+public fun loadResource(name: String) = {}::class.java.classLoader.getResourceAsStream(name).readAllBytes()

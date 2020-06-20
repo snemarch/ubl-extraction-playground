@@ -14,10 +14,12 @@ repositories {
 
 dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-	implementation "com.fasterxml.woodstox:woodstox-core:6.2.1"
-//	implementation "com.fasterxml:aalto-xml:1.2.2"
-}
+	implementation("com.fasterxml.staxmate:staxmate:2.3.1") {
+		// Current StaxMate is old enough it has Codehaus version of Woodstox. Exclude both in case SM gets updated :-)
+		exclude group: "com.fasterxml.woodstox"
+		exclude group: "org.codehaus.woodstox"
+	}
 
-test {
-	useJUnitPlatform()
+//	implementation "com.fasterxml.woodstox:woodstox-core:6.2.1"
+	implementation "com.fasterxml:aalto-xml:1.2.2"
 }
